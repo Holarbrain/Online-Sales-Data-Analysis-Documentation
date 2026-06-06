@@ -91,15 +91,12 @@ online-sales-analysis/
 │   └── processed/                      # Exported sales_clean table (CSV)
 │
 ├── queries/
+|   ├── Exploratory/
+│   │   └── raw_script.sql      # Database and staging table creation
 │   ├── transformations/
-│   │   ├── 01_database_setup.sql       # Database and staging table creation
-│   │   ├── 02_data_cleaning.sql        # Full cleaning pipeline (missing values, invalid records, date conversion, revenue calc)
-│   │   └── 03_data_transformation.sql  # Derived columns and final clean table
+│   │   └── cleaned_script.sql  # Derived columns and final clean table
 │   └── final/
-│       ├── top_products.sql
-│       ├── sales_channel_performance.sql
-│       ├── return_analysis.sql
-│       └── warehouse_performance.sql
+│       └──cleaned_script.sql
 │
 ├── reports/ 
 |   ├── Online Sales Data Cleaning & Analysis Project.pptx
@@ -111,7 +108,7 @@ online-sales-analysis/
 |   ├── SALES.png                                    # Sales Table stagging
 |   ├── Online_sales top product.png                 # Top sales by product
 |   ├── online_sale wearhouse location.png           # Sales by wearhouse location
-    └── online_sale wearhouse location.png           # Sales return analysis
+|   └── online_sale wearhouse location.png           # Sales return analysis
 |  
 │
 └── README.md                           # You are here
