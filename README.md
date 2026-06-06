@@ -101,15 +101,17 @@ online-sales-analysis/
 │       ├── return_analysis.sql
 │       └── warehouse_performance.sql
 │
-├── reports/
+├── reports/ 
+|   ├── Online Sales Data Cleaning & Analysis Project.pptx
 │   └── Online_Sales_Project_Report.docx
 │
 ├── visuals/
-│   ├── online_Sales dashboard.png        # Excel dashboard
-│   ├── Online_sales sql.png              # Sales table stagging
-|   ├── Online_sales top product.png      # Top sales by product
-|   ├── online_sale wearhouse location.png      # Sales by wearhouse location
-    └── erd.png                         # Entity Relationship Diagram
+│   ├── online_Sales dashboard.png                   # Excel dashboard
+│   ├── Online_sales sql.png                         # Sales analysis with MySQL
+|   ├── SALES.png                                    # Sales Table stagging
+|   ├── Online_sales top product.png                 # Top sales by product
+|   ├── online_sale wearhouse location.png           # Sales by wearhouse location
+    └── online_sale wearhouse location.png           # Sales return analysis
 |  
 │
 └── README.md                           # You are here
