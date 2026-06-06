@@ -73,7 +73,7 @@
 |----------|-------------|
 | Data Storage | MySQL (`online_sales_project` database) |
 | Data Processing | SQL DDL for staging, DML for cleaning and transformation |
-| Analysis | MySQL queries — aggregations, grouping, window-style percentage calculations |
+| Analysis | MySQL queries aggregations, grouping, window-style percentage calculations |
 | Visualization | Microsoft Excel PivotTables, PivotCharts, KPI cards, Slicers |
 | Reporting | Microsoft PowerPoint |
 | Version Control | Git / GitHub |
@@ -105,11 +105,12 @@ online-sales-analysis/
 │   └── Online_Sales_Project_Report.docx
 │
 ├── visuals/
-│   ├── dashboard_screenshot.png        # Excel dashboard
-│   └── erd.png                         # Entity Relationship Diagram
-│
-├── docs/
-│   └── data_dictionary.md              # Field definitions and data types
+│   ├── online_Sales dashboard.png        # Excel dashboard
+│   ├── Online_sales sql.png              # Sales table stagging
+|   ├── Online_sales top product.png      # Top sales by product
+|   ├── online_sale wearhouse location.png      # Sales by wearhouse location
+    └── erd.png                         # Entity Relationship Diagram
+|  
 │
 └── README.md                           # You are here
 ```
