@@ -1,6 +1,6 @@
 # Online Sales Data Cleaning & Analysis
 
-> A full end-to-end data project that takes a messy 49,782-row transactional sales CSV — riddled with missing values, invalid records, inconsistent spellings, and broken date formats — and transforms it into a clean, query-ready dataset. Business insights were extracted via SQL and surfaced through an interactive Excel dashboard.
+> A full end-to-end data project that takes a messy 49,782-row transactional sales CSV riddled with missing values, invalid records, inconsistent spellings, and broken date formats and transforms it into a clean, query-ready dataset. Business insights were extracted via SQL and surfaced through an interactive Excel dashboard.
 
 ---
 
@@ -35,9 +35,9 @@
 
 ## 1. Project Overview
 
-**Context:** Raw transactional sales data for an online retail business was available in CSV format but unusable for reliable reporting due to pervasive data quality issues — missing customer records, negative prices and quantities, misspelled categorical values, and dates stored as plain text.
+**Context:** Raw transactional sales data for an online retail business was available in CSV format but unusable for reliable reporting due to pervasive data quality issues missing customer records, negative prices and quantities, misspelled categorical values, and dates stored as plain text.
 
-**Problem Statement:** How do you turn a fundamentally broken dataset into a trustworthy foundation for business analysis — and what does the cleaned data actually reveal about product performance, channel effectiveness, return behaviour, and warehouse operations?
+**Problem Statement:** How do you turn a fundamentally broken dataset into a trustworthy foundation for business analysis and what does the cleaned data actually reveal about product performance, channel effectiveness, return behaviour, and warehouse operations?
 
 **Approach:** The raw CSV was ingested into a MySQL staging table, then a full data cleaning pipeline was written in SQL to detect, flag, and resolve each category of quality issue before business analysis queries were run on the clean table. Results were then brought into Excel for dashboard visualization and KPI reporting.
 
@@ -72,9 +72,9 @@
 | Category | Tool(s) Used |
 |----------|-------------|
 | Data Storage | MySQL (`online_sales_project` database) |
-| Data Processing | SQL — DDL for staging, DML for cleaning and transformation |
+| Data Processing | SQL DDL for staging, DML for cleaning and transformation |
 | Analysis | MySQL queries — aggregations, grouping, window-style percentage calculations |
-| Visualization | Microsoft Excel — PivotTables, PivotCharts, KPI cards, Slicers |
+| Visualization | Microsoft Excel PivotTables, PivotCharts, KPI cards, Slicers |
 | Reporting | Microsoft PowerPoint |
 | Version Control | Git / GitHub |
 | Documentation | Markdown |
@@ -143,7 +143,7 @@ online-sales-analysis/
 [Interactive Dashboard + Project Report (Word / PowerPoint)]
 ```
 
-1. **Source:** `online_sales_dataset.csv` — 49,782 rows, 17 columns, sourced as a raw transactional export. Loaded into MySQL as a staging table with all columns preserved in their original uncleaned state.
+1. **Source:** `online_sales_dataset.csv` 49,782 rows, 17 columns, sourced as a raw transactional export. Loaded into MySQL as a staging table with all columns preserved in their original uncleaned state.
 
 2. **Ingestion:** A `CREATE TABLE sales_staging` DDL script was used to define the schema, with `Invoice_Date` deliberately imported as `VARCHAR(50)` to avoid silent format-conversion errors during load.
 
@@ -185,13 +185,13 @@ online-sales-analysis/
 
 > **Row count (raw):** 49,782 rows
 > **Row count (clean):** Reduced after deletion of invalid quantity/price rows
-> **Key derived field:** `Total_Sales` — the primary revenue metric used across all business analyses
+> **Key derived field:** `Total_Sales` the primary revenue metric used across all business analyses
 
 ---
 
 ## 7. ERD - Entity Relationship Diagram
 
-This project uses a **single-table design**. All transaction attributes — customer, product, order, and logistics — are stored as columns within `sales_clean`. There are no foreign-key relationships to separate dimension tables.
+This project uses a **single-table design**. All transaction attributes customer, product, order, and logistics are stored as columns within `sales_clean`. There are no foreign-key relationships to separate dimension tables.
 
 ```mermaid
 erDiagram
@@ -241,7 +241,7 @@ The analysis was exploratory and descriptive. Starting from the cleaned dataset,
 - Descriptive aggregation — `SUM()`, `COUNT()`, `ROUND()` across product, channel, country, and warehouse dimensions
 - Top-N ranking — `ORDER BY ... DESC` with `LIMIT 10` for highest-revenue product analysis
 - Percentage-of-total calculation — return rate computed using a correlated subquery against the full `sales_clean` row count
-- PivotTable analysis in Excel — cross-tabulation of revenue, orders, and categories with slicer-driven dynamic filtering
+- PivotTable analysis in Excel cross-tabulation of revenue, orders, and categories with slicer-driven dynamic filtering
 - KPI card reporting — single-value summary metrics: Total Revenue, Average Order Value, Total Customers, Total Discount, Total Orders, Total Quantity
 
 ---
@@ -249,19 +249,19 @@ The analysis was exploratory and descriptive. Starting from the cleaned dataset,
 ## 9. Key Insights
 
 **Insight 1: Product revenue is highly concentrated**
-A small number of products drove a disproportionately large share of total revenue. The top-ranked products by `Total_Revenue` showed a steep drop-off after the first few entries — a classic long-tail distribution. This means supply chain disruptions or stockouts for a handful of SKUs would have outsized revenue impact, and active inventory protection for these products should be a priority.
+A small number of products drove a disproportionately large share of total revenue. The top-ranked products by `Total_Revenue` showed a steep drop-off after the first few entries a classic long-tail distribution. This means supply chain disruptions or stockouts for a handful of SKUs would have outsized revenue impact, and active inventory protection for these products should be a priority.
 
 **Insight 2: Sales channel preference is not evenly distributed**
 One sales channel generated the highest revenue and order count by a clear margin, reflecting a strong customer preference for that purchasing platform. Underperforming channels represent either an untapped opportunity or a poor fit with the customer base — both warrant a deliberate strategic decision rather than passive continuation.
 
 **Insight 3: Return behaviour signals operational risk**
-The return rate analysis revealed what percentage of all transactions resulted in a return. Even a modest return rate compounds quickly across ~50,000 transactions — and because `Total_Sales` is calculated post-discount but pre-return, headline revenue figures overstate actual realized revenue. The data did not include return reason codes, which limits root-cause diagnosis.
+The return rate analysis revealed what percentage of all transactions resulted in a return. Even a modest return rate compounds quickly across ~50,000 transactions and because `Total_Sales` is calculated post-discount but pre-return, headline revenue figures overstate actual realized revenue. The data did not include return reason codes, which limits root-cause diagnosis.
 
 **Insight 4: Warehouse performance is uneven**
-Certain warehouse locations significantly outperformed others in both order volume and revenue contribution. Underperforming locations may reflect geographic demand gaps, stock allocation imbalances, or fulfilment inefficiencies — each pointing to a different operational intervention.
+Certain warehouse locations significantly outperformed others in both order volume and revenue contribution. Underperforming locations may reflect geographic demand gaps, stock allocation imbalances, or fulfilment inefficiencies each pointing to a different operational intervention.
 
 **Insight 5: Discount data integrity is a systemic risk**
-The cleaning step caught discount values below 0% and above 100% — implying either data entry errors or a pricing system without validation rules. Even after cleaning, discount variation across transactions introduces noise into revenue figures. A standardized discount policy enforced at the point of data entry would prevent this category of issue from recurring.
+The cleaning step caught discount values below 0% and above 100% implying either data entry errors or a pricing system without validation rules. Even after cleaning, discount variation across transactions introduces noise into revenue figures. A standardized discount policy enforced at the point of data entry would prevent this category of issue from recurring.
 
 ---
 
@@ -269,11 +269,11 @@ The cleaning step caught discount values below 0% and above 100% — implying ei
 
 | Priority | Recommendation | Based On | Suggested Owner |
 |----------|---------------|----------|-----------------|
-| High | Protect inventory for the top 10 revenue-driving products — stockouts in this group carry outsized P&L risk | Insight 1: revenue concentration | Supply Chain / Merchandising |
+| High | Protect inventory for the top 10 revenue-driving products stockouts in this group carry outsized P&L risk | Insight 1: revenue concentration | Supply Chain / Merchandising |
 | High | Investigate the return rate by product category and channel; introduce return reason codes to future data collection to enable root-cause analysis | Insight 3: return behaviour | Operations / Product Quality |
-| Medium | Conduct a channel strategy review for underperforming sales channels — assess whether investment, repositioning, or discontinuation is the right call | Insight 2: channel performance gap | Commercial / Marketing |
+| Medium | Conduct a channel strategy review for underperforming sales channels assess whether investment, repositioning, or discontinuation is the right call | Insight 2: channel performance gap | Commercial / Marketing |
 | Medium | Audit underperforming warehouse locations for stock allocation imbalances, fulfilment SLA gaps, or geographic demand mismatches | Insight 4: warehouse performance variance | Logistics / Operations |
-| Low | Implement server-side validation on the `Discount` field to reject values outside `[0, 1]` before they reach the database — this is a data entry problem, not just a cleaning task | Insight 5: discount data integrity | Data Engineering |
+| Low | Implement server-side validation on the `Discount` field to reject values outside `[0, 1]` before they reach the database this is a data entry problem, not just a cleaning task | Insight 5: discount data integrity | Data Engineering |
 
 ---
 
@@ -293,7 +293,7 @@ The cleaning step caught discount values below 0% and above 100% — implying ei
 - **No temporal trend analysis in SQL:** While `Clean_Invoice_Date` was created, month-over-month or seasonal trend analysis was not performed in SQL. The Excel dashboard includes a monthly revenue trend chart, but this was not cross-validated against SQL output.
 - **Single-table structure:** The absence of normalized `customers` and `products` tables means customer lifetime value, repeat purchase rate, and product-level margin analysis cannot be performed without additional data modelling.
 - **'Unknown' warehouse rows remain in aggregations:** Transactions where `Ware_house_Location` was set to `'Unknown'` are included in warehouse-level summaries. This inflates the `'Unknown'` group and may mask attribution for a non-trivial share of revenue.
-- **No external benchmarks:** All insights are relative (e.g., "Channel A outperforms Channel B") — there is no industry benchmark to assess whether overall return rates, order values, or revenue concentration are typical or anomalous for this business type.
+- **No external benchmarks:** All insights are relative (e.g., "Channel A outperforms Channel B") there is no industry benchmark to assess whether overall return rates, order values, or revenue concentration are typical or anomalous for this business type.
 
 ---
 
@@ -326,7 +326,7 @@ Data & Analytics Professional
 
 - 🔗 [LinkedIn](https://www.linkedin.com/in/your-linkedin)
 - 💼 [Portfolio / GitHub](https://github.com/your-github)
-- 📧 your-email@example.com
+- 📧 www.ismailabdulrazaq1408@gmail.com
 
 ---
 
