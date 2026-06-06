@@ -1,4 +1,4 @@
-# Online Sales Data Cleaning & Analysis
+# Online Sales Data Cleaning & Analysis Project
 
 > A full end-to-end data project that takes a messy 49,782-row transactional sales CSV riddled with missing values, invalid records, inconsistent spellings, and broken date formats and transforms it into a clean, query-ready dataset. Business insights were extracted via SQL and surfaced through an interactive Excel dashboard.
 
